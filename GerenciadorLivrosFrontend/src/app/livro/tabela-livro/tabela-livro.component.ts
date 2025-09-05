@@ -13,8 +13,9 @@ import { FormularioLivroComponent } from '../formulario-livro/formulario-livro.c
 export class TabelaLivroComponent {
   livros: Livro[] = [];
   livrosTabela: any = [];
-  livroSelecionado: Livro | null = null;
+  livroSelecionado: any;
   hiddenForm = true;
+  controlaEdicao = false;
 
   constructor(private livroService: LivroServiceService){
     this.buscaLivros();
@@ -32,7 +33,11 @@ export class TabelaLivroComponent {
     this.hiddenForm = false;
   }
 
-  editar(livro: Livro) {
+  editar(livro: Livro, id: number) {
+    debugger
+    if(id != null){
+      this.controlaEdicao = true;
+    }
     this.livroSelecionado = livro;
     this.hiddenForm = false;
   }
@@ -42,8 +47,10 @@ export class TabelaLivroComponent {
   }
 
   salvar(livro: Livro | Omit<Livro, 'id'>) {
-    if('id' in livro){
-      this.livroService.updateLivro(livro, livro.id).subscribe(() => {
+    debugger
+    var auxLivro : any = livro;
+    if(this.controlaEdicao){
+      this.livroService.updateLivro(auxLivro, auxLivro.id).subscribe(() => {
         this.buscaLivros();
         this.hiddenForm = true;
       });
@@ -53,6 +60,7 @@ export class TabelaLivroComponent {
         this.hiddenForm = true;
       });
     }
+    this.controlaEdicao = false;
   }
 
   cancelar(){

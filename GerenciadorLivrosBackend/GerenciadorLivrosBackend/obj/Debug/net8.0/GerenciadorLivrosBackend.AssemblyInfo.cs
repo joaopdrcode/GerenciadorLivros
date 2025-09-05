@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GerenciadorLivrosBackend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3ba58d4cd25c536dd33d861f67bb2fdaa5042f9a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2383909321647bc17c416b94b485ee6d40e5c444")]
 [assembly: System.Reflection.AssemblyProductAttribute("GerenciadorLivrosBackend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GerenciadorLivrosBackend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

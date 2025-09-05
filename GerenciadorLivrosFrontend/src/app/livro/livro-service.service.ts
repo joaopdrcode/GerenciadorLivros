@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { enviroment } from '../../environments/environments';
 
 export interface Livro {
   status: boolean,
@@ -12,7 +13,7 @@ export interface Livro {
   providedIn: 'root'
 })
 export class LivroServiceService {
-  private api = "https://localhost:7159/api/livros"
+  private api = enviroment.api;
   constructor(private http: HttpClient) { }
 
   getLivros(): Observable<Livro[]> {

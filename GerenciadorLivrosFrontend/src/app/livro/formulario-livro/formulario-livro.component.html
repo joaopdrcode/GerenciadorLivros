@@ -1,24 +1,36 @@
 <div class="card mb-3">
     <div class="card-body">
-        <form (ngSubmit)="onSubmit()" #form="ngForm">
+        <form [formGroup]="dadosForm" (ngSubmit)="onSubmit()" #form="ngForm">
             <div class="form-group">
                 <label>Título</label>
-                <input class="form-control" name="titulo" [(ngModel)]="body.titulo" required />
+                <input class="form-control" name="titulo" formControlName="titulo" [ngClass]="{'is-invalid': dadosForm.get('titulo')?.invalid && dadosForm.get('titulo')?.touched}"/>
+                <div class="invalid-feedback">
+                    Campo obrigatório.
+                </div>
             </div>
 
             <div class="form-group">
                 <label>Autor</label>
-                <input class="form-control" name="autor" [(ngModel)]="body.autor" required />
+                <input class="form-control" name="autor" formControlName="autor" [ngClass]="{'is-invalid': dadosForm.get('autor')?.invalid && dadosForm.get('autor')?.touched}"/>
+                <div class="invalid-feedback">
+                    Campo obrigatório.
+                </div>
             </div>
 
             <div class="form-group">
                 <label>Genero</label>
-                <input class="form-control" name="genero" [(ngModel)]="body.genero" required />
+                <input class="form-control" name="genero" formControlName="genero" [ngClass]="{'is-invalid': dadosForm.get('genero')?.invalid && dadosForm.get('genero')?.touched}"/>
+                <div class="invalid-feedback">
+                    Campo obrigatório.
+                </div>
             </div>
 
             <div class="form-group">
                 <label>Ano</label>
-                <input class="form-control" name="ano" [(ngModel)]="body.ano" required />
+                <input class="form-control" name="ano" formControlName="ano" [ngClass]="{'is-invalid': dadosForm.get('ano')?.invalid && dadosForm.get('ano')?.touched}"/>
+                <div class="invalid-feedback">
+                    Campo numérico obrigatório (1980-2025).
+                </div>
             </div>
 
             <div class="d-flex justify-content-end">
@@ -26,7 +38,7 @@
                     Fechar
                 </button>
 
-                <button type="submit" class="btn btn-success ms-2 mt-2" [disabled]="form.invalid">
+                <button type="submit" class="btn btn-success ms-2 mt-2" >
                     Enviar
                 </button>
             </div>
