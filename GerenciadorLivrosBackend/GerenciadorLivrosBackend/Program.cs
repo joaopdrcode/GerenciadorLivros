@@ -3,6 +3,15 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// registro do CORS para aceitar requisicoes
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AddCors", policy =>
+    {
+        policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+    });
+});
+
 // Add services to the container.
 
 // registro do DbContext 
@@ -24,6 +33,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+// registro do CORS
+app.UseCors("AddCors");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

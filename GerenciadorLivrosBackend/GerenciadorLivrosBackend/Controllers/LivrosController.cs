@@ -30,6 +30,7 @@ namespace GerenciadorLivrosBackend.Controllers
         [Route("livros")]
         public async Task<IActionResult> GetLivros()
         {
+            // busca todos os livros cadastrados
             var livros = await _getLivrosRepository.GetLivros();
             return Ok(_apiResponseService.ApiResponse(true, "Consulta Realizada!", livros));
         }
@@ -38,15 +39,17 @@ namespace GerenciadorLivrosBackend.Controllers
         [Route("livros/{id}")]
         public async Task<IActionResult> GetLivro(int id)
         {
+            // busca os livros individualmente 
             var livro = await _getLivroRepository.GetLivro(id);
             if (livro != null) return Ok(_apiResponseService.ApiResponse(true, "Consulta Realizada!", livro));
-            return NotFound(_apiResponseService.ApiResponse(false, "Erro Durante a Consulta"));
+            return BadRequest(_apiResponseService.ApiResponse(false, "Erro Durante a Consulta"));
         }
 
         [HttpPost]
         [Route("livros")]
         public async Task<IActionResult> InsertLivro(LivroDTO livroDTO)
         {
+            // cadastra um novo livro
             var livro = new Livro
             {
                 Ano = livroDTO.Ano,
@@ -56,13 +59,14 @@ namespace GerenciadorLivrosBackend.Controllers
             };
             var addLivro = await _insertLivroRepository.InsertLivro(livro);
             if(addLivro) return Ok(_apiResponseService.ApiResponse(true, "Livro Adicionado com Sucesso!"));
-            return NotFound(_apiResponseService.ApiResponse(false, "Erro ao Adicionar Livro"));
+            return BadRequest(_apiResponseService.ApiResponse(false, "Erro ao Adicionar Livro"));
         }
 
         [HttpPut]
         [Route("livros/{id}")]
         public async Task<IActionResult> UpdateLivro(int id, LivroDTO livroDTO)
         {
+            // atualiza os livros individualmente
             var livro = new Livro
             {
                 Id = id,
@@ -73,16 +77,17 @@ namespace GerenciadorLivrosBackend.Controllers
             };
             var addLivro = await _updateLivroRepository.UpdateLivro(livro);
             if (addLivro) return Ok(_apiResponseService.ApiResponse(true, "Livro Atualizado com Sucesso!"));
-            return NotFound(_apiResponseService.ApiResponse(false, "Erro ao Atualizar Livro"));
+            return BadRequest(_apiResponseService.ApiResponse(false, "Erro ao Atualizar Livro"));
         }
 
         [HttpDelete]
         [Route("livros/{id}")]
         public async Task<IActionResult> DeleteLivro(int id)
         {
+            // deleta os livros individualmente
             var deleteLivro = await _deleteLivroRepository.DeleteLivro(id);
             if (deleteLivro) return Ok(_apiResponseService.ApiResponse(true, "Livro Removido com Sucesso!"));
-            return NotFound(_apiResponseService.ApiResponse(false, "Erro ao Remover Livro"));
+            return BadRequest(_apiResponseService.ApiResponse(false, "Erro ao Remover Livro"));
         }
     }
 }
