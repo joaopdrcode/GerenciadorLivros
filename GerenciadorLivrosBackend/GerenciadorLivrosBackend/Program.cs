@@ -1,3 +1,4 @@
+using GerenciadorLivrosBackend.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +14,9 @@ builder.Services.AddScoped<IGetLivrosRepository, GetLivrosRepository>();
 builder.Services.AddScoped<IDeleteLivroRepository, DeleteLivroRepository>();
 builder.Services.AddScoped<IInsertLivroRepository, InsertLivroRepository>();
 builder.Services.AddScoped<IUpdateLivroRepository, UpdateLivroRepository>();
+
+// registro do service
+builder.Services.AddScoped<ApiResponseService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
